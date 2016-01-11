@@ -11,9 +11,13 @@ targetDates <- data[data$Date == as.Date("2007-02-01") | data$Date == as.Date("2
 targetDates$DateTime <-as.POSIXct(paste(targetDates$Date, targetDates$Time), format="%Y-%m-%d %H:%M:%S")
 
 ##Make the graph
-png(filename="./plot2.png", width = 480, height = 480)
+png(filename="./plot3.png", width = 480, height = 480)
 
-plot(targetDates$DateTime, targetDates$Global_active_power, type = "l", ylab = "Global Active Power (Kilowatts)")
+plot(targetDates$DateTime, targetDates$Sub_metering_1, type = "l")
+lines(targetDates$DateTime, targetDates$Sub_metering_2, type = "l", col="red")
+lines(targetDates$DateTime, targetDates$Sub_metering_3, type = "l", col="blue")
+
+legend("topright", col = c("black", "blue", "red"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1)
 
 dev.off()
 
